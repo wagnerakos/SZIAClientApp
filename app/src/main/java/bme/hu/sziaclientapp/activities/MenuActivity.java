@@ -86,6 +86,6 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public void showToast(String msg) {
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG);
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
     }
 }
