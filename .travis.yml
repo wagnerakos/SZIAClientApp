@@ -25,4 +25,6 @@ notifications:
     recipients: 
     - myemail@address.com 
     on_success: always 
-    on_failure: always 
+    on_failure: always
+before_install:
+ - chmod +x gradlew

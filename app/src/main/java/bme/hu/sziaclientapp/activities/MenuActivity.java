@@ -1,4 +1,4 @@
-package bme.hu.sziaclientapp;
+package bme.hu.sziaclientapp.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,9 +12,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import javax.inject.Inject;
+
+import bme.hu.sziaclientapp.R;
+import bme.hu.sziaclientapp.presenters.MenuPresenter;
+import bme.hu.sziaclientapp.screens.MenuScreen;
 
 public class MenuActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, MenuScreen {
+
+    protected MenuPresenter menuPresenter = new MenuPresenter(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +31,6 @@ public class MenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -66,11 +66,6 @@ public class MenuActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -80,22 +75,17 @@ public class MenuActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_fligths) {
+            menuPresenter.flightsButtonPressed();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void showToast(String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG);
     }
 }
