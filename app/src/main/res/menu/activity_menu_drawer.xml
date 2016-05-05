@@ -5,6 +5,12 @@
         <item
             android:id="@+id/nav_fligths"
             android:title="Járatok" />
+        <item
+            android:id="@+id/nav_favourites"
+            android:title="Kedvencek" />
+        <item
+            android:id="@+id/nav_details"
+            android:title="Részletek" />
     </group>
 
 </menu>
