@@ -28,7 +28,7 @@ public interface FlightsApi {
   
   @GET("flights/{id}")
   Call<Flight> flightsIdGet(
-          @Path("id") Integer id
+          @Path("id") Long id
   );
 
   

@@ -26,7 +26,7 @@ public class FavouritesPresenter extends Presenter<FavouritesScreen> {
         SZIAClientAppApplication.injector.inject(this);
     }
 
-    public List<Flight> getFlights() {
+    public List<Flight> getFavourites() {
         return favouritesInteractor.getFavourites();
     }
 }

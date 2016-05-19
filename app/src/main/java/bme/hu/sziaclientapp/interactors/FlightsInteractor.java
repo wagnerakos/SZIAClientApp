@@ -1,5 +1,6 @@
 package bme.hu.sziaclientapp.interactors;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +24,12 @@ public class FlightsInteractor {
     }
 
     public List<Flight> getFlights() {
-        return null;
+        List<Flight> res = new ArrayList<>();
+        try {
+            res = flightsApi.flightsGet().execute().body();
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        }
+        return res;
     }
 }

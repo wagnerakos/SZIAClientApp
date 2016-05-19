@@ -7,17 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import bme.hu.sziaclientapp.R;
-import bme.hu.sziaclientapp.fragments.FlightsFragment.OnListFragmentInteractionListener;
-import bme.hu.sziaclientapp.fragments.dummy.DummyContent.DummyItem;
+import bme.hu.sziaclientapp.interfaces.OnListFragmentInteractionListener;
 import bme.hu.sziaclientapp.model.Flight;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder> {
 
     private final List<Flight> mValues;
@@ -38,7 +33,8 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mTitleTextView.setText(mValues.get(position).getLeavingFrom());
+        holder.mTitleTextView.setText(holder.mItem.getLeavingFrom() + " - " + holder.mItem.getDestination());
+        holder.mSubtitleTextView.setText(new SimpleDateFormat("yyyy-MM-dd hh:mm").format(holder.mItem.getDepartureTime()));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,12 +56,14 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mTitleTextView;
+        public final TextView mSubtitleTextView;
         public Flight mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mTitleTextView = (TextView) view.findViewById(R.id.row_template_title);
+            mSubtitleTextView = (TextView) view.findViewById(R.id.row_template_subtitle);
         }
     }
 }

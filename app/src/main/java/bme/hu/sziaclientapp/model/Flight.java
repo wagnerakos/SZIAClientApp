@@ -8,10 +8,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class Flight {
 
-  public Flight(Long id, String leavingFrom, String destination) {
+  public Flight(Long id, String leavingFrom, String destination, Date departureTime,
+                String checkInDeck, Integer delayInMinute, String comment) {
     this.id = id;
     this.leavingFrom = leavingFrom;
     this.destination = destination;
+    this.departureTime = departureTime;
+    this.checkInDeck = checkInDeck;
+    this.delayInMinute = delayInMinute;
+    this.comment = comment;
   }
 
   @SerializedName("id")
