@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "119603494205",
+    "project_id": "sziaclientapp"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119603494205:android:6dcf202cfc7ccdcc",
+        "android_client_info": {
+          "package_name": "bme.hu.sziaclientapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOPyhOWJG6_LIIrIuINd0Nhrq-3AIpCFE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-78093056-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

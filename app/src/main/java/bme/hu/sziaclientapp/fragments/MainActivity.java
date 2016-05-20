@@ -12,10 +12,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import java.util.Arrays;
 import java.util.HashSet;
 
 import bme.hu.sziaclientapp.R;
+import bme.hu.sziaclientapp.daggerconfig.SZIAClientAppApplication;
 import bme.hu.sziaclientapp.interfaces.OnListFragmentInteractionListener;
 import bme.hu.sziaclientapp.model.Flight;
 
@@ -24,6 +28,8 @@ public class MainActivity extends AppCompatActivity
 
     public static SharedPreferences sharedPreferences;
     public static String SP_FAVOURITES_KEY = "favouriteIds";
+
+    private Tracker mTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,12 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         sharedPreferences = this.getSharedPreferences("hu.SZIAClientApp", Context.MODE_PRIVATE);
+
+        SZIAClientAppApplication application = (SZIAClientAppApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+
+        mTracker.setScreenName("Image~MainActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
@@ -104,6 +116,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(Flight item) {
+        mTracker.send(new HitBuilders.EventBuilder().setCategory("Action").setAction("Flight #" + item.getId() + " clicked!").build());
         DetailsFragment fragment = DetailsFragment.newInstance(item.getId());
         android.support.v4.app.FragmentTransaction fragmentTransaction =
                 getSupportFragmentManager().beginTransaction();
